@@ -31,7 +31,11 @@ class EmojiPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     emoji.charForSkin(skin),
-                    style: TextStyle(fontSize: 24.0),
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontFamily:
+                          'Apple Color Emoji', // Investigate what to use on other platforms
+                    ),
                   ),
                 ),
                 onPressed: () {

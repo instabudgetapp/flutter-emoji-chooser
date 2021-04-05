@@ -36,7 +36,7 @@ class _SkinToneState extends State<SkinToneSelector> {
               },
             ),
             padding: EdgeInsets.only(
-              left: 4.0,
+              left: 24.0,
             ),
           ),
         );

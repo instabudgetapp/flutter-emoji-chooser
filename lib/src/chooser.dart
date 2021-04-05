@@ -225,8 +225,11 @@ class _EmojiChooserState extends State<EmojiChooser> {
               }),
             ],
           ),
-          padding: EdgeInsets.only(
-            bottom: 2.0,
+          padding: EdgeInsets.fromLTRB(
+            10.0,
+            10.0,
+            10.0,
+            4.0,
           ),
         ),
         SizedBox(
