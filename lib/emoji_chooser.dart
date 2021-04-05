@@ -1,7 +1,4 @@
 library emoji_chooser;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:emoji_chooser/src/emoji_data.dart';
+export 'package:emoji_chooser/src/chooser.dart';

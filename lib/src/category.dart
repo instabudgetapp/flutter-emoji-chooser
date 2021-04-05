@@ -1,0 +1,10 @@
+enum Category {
+  SMILEYS,
+  ANIMALS,
+  FOODS,
+  TRAVEL,
+  ACTIVITIES,
+  OBJECTS,
+  SYMBOLS,
+  FLAGS
+}

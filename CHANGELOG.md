@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 2021/04/05
 
-* TODO: Describe initial release.
+* Initial release of a Flutter emoji picker
+* Latest set of emojis
+* Skin tone picker
