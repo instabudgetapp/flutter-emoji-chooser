@@ -16,43 +16,84 @@ class SkinToneSelector extends StatefulWidget {
 
 class _SkinToneState extends State<SkinToneSelector> {
   int _skin = 0;
+  OverlayEntry _overlayEntry;
   bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
-    if (_expanded) {
-      List<Widget> dots = [];
-      for (var i = 0; i < SkinTones.tones.length; i++) {
-        dots.add(
-          Padding(
-            child: SkinDot(
-              skin: i,
-              onTap: (skin) {
-                setState(() {
-                  _expanded = !_expanded;
-                  _skin = skin;
-                  widget.onSkinChanged(skin);
-                });
-              },
-            ),
-            padding: EdgeInsets.only(
-              left: 24.0,
-            ),
-          ),
-        );
-      }
-      return Row(
-        children: dots,
-      );
-    } else {
-      return SkinDot(
-        skin: _skin,
-        onTap: (skin) {
-          setState(() {
-            _expanded = !_expanded;
-          });
-        },
+    return SkinDotButton(
+      skin: _skin,
+      onPressed: () {
+        if (_expanded) {
+          _overlayEntry.remove();
+        } else {
+          _overlayEntry = createOverlay(context);
+          Overlay.of(context).insert(_overlayEntry);
+        }
+        setState(() {
+          _expanded = !_expanded;
+        });
+      },
+    );
+  }
+
+  OverlayEntry createOverlay(BuildContext context) {
+    RenderBox renderBox = context.findRenderObject();
+    var size = renderBox.size;
+    var offset = renderBox.localToGlobal(Offset.zero);
+
+    List<Widget> dots = [];
+    for (var i = 0; i < SkinTones.tones.length; i++) {
+      dots.add(
+        SkinDotButton(
+          skin: i,
+          onPressed: () {
+            _overlayEntry.remove();
+            setState(() {
+              _skin = i;
+              _expanded = false;
+            });
+            widget.onSkinChanged(_skin);
+          },
+        ),
       );
     }
+
+    var w = size.width * 6;
+    return OverlayEntry(
+        builder: (context) => Positioned(
+              left: offset.dx - w + size.width,
+              top: offset.dy - size.height,
+              width: w,
+              height: size.height,
+              child: Material(
+                elevation: 4.0,
+                child: Row(
+                  children: dots,
+                ),
+              ),
+            ));
+  }
+}
+
+class SkinDotButton extends StatelessWidget {
+  final int skin;
+  final Function() onPressed;
+
+  const SkinDotButton({Key key, this.skin, this.onPressed}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 9,
+      height: MediaQuery.of(context).size.width / 9,
+      child: FlatButton(
+        autofocus: true,
+        padding: EdgeInsets.all(0.0),
+        child: SkinDot(
+          skin: skin,
+        ),
+        onPressed: onPressed,
+      ),
+    );
   }
 }

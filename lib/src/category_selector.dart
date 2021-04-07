@@ -17,12 +17,13 @@ class CategorySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 9,
+      height: MediaQuery.of(context).size.width / 9,
       child: FlatButton(
         padding: EdgeInsets.all(0.0),
         color: selected ? Colors.black12 : Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(0),
+            Radius.circular(100),
           ),
         ),
         child: Center(

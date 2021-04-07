@@ -11,7 +11,7 @@ Brought to you by the [InstaBudget](https://instabudget.app) team.
 Declare dependency in your `pubspec.yaml`
 ```yaml
 dependencies:
-    emoji_chooser: ^0.9.1
+    emoji_chooser: ^0.9.2
 ```
 
 You can then easily embed the Emoji Chooser Widget anywhere in your application:
@@ -49,7 +49,7 @@ return showModalBottomSheet(
     context: context,
     builder: (BuildContext subcontext) {
         return Container(
-        height: 300,
+        height: 266,
         child: EmojiChooser(
             onSelected: (emoji) {
             Navigator.of(subcontext).pop(emoji);

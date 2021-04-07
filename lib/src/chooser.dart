@@ -203,6 +203,13 @@ class _EmojiChooserState extends State<EmojiChooser> {
       );
       index += group.pages.length;
     }
+    selectors.add(
+      SkinToneSelector(onSkinChanged: (skin) {
+        setState(() {
+          _skin = skin;
+        });
+      }),
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,11 +225,6 @@ class _EmojiChooserState extends State<EmojiChooser> {
                   fontSize: 12,
                 ),
               ),
-              SkinToneSelector(onSkinChanged: (skin) {
-                setState(() {
-                  _skin = skin;
-                });
-              }),
             ],
           ),
           padding: EdgeInsets.fromLTRB(
