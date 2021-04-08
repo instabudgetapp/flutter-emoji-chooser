@@ -5,27 +5,27 @@ String unicodeToString(String unified) {
 }
 
 class EmojiInternalData {
-  String id;
-  String name;
-  String unified;
-  String nonQualified;
-  String category;
-  int sortOrder;
-  bool hasApple;
-  bool hasGoogle;
-  List<String> skins = [];
+  String? id;
+  String? name;
+  String? unified;
+  String? nonQualified;
+  String? category;
+  int? sortOrder;
+  bool? hasApple;
+  bool? hasGoogle;
+  List<String?> skins = [];
 
-  String get char => unicodeToString(unified);
+  String get char => unicodeToString(unified!);
 
   String charForSkin(int skin) {
     if (skin == 0 || skin >= skins.length + 1) {
       return this.char;
     }
-    String unified = skins[skin - 1];
+    String unified = skins[skin - 1]!;
     return unicodeToString(unified);
   }
 
-  String unifiedForSkin(int skin) {
+  String? unifiedForSkin(int skin) {
     if (skin == 0 || skin >= skins.length + 1) {
       return this.unified;
     }

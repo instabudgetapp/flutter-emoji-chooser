@@ -1,3 +1,7 @@
+## [0.9.3] - 2021/04/07
+
+* Flutter 2.0 compatibility (null safety, moving to TextButton)
+
 ## [0.9.2] - 2021/04/06
 
 * Improved skin tone selector with larger targets

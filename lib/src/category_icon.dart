@@ -5,7 +5,7 @@ class CategoryIcon {
   final Color color;
   final Color selectedColor;
   const CategoryIcon({
-    @required this.icon,
+    required this.icon,
     this.color = const Color.fromRGBO(211, 211, 211, 1),
     this.selectedColor = const Color.fromRGBO(178, 178, 178, 1),
   });

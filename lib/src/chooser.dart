@@ -19,10 +19,10 @@ class EmojiChooser extends StatefulWidget {
   final Function(EmojiData) onSelected;
 
   const EmojiChooser({
-    Key key,
+    Key? key,
     this.columns = 10,
     this.rows = 5,
-    @required this.onSelected,
+    required this.onSelected,
   }) : super(key: key);
   @override
   State<StatefulWidget> createState() => _EmojiChooserState();
@@ -106,14 +106,14 @@ class _EmojiChooserState extends State<EmojiChooser> {
   Widget build(BuildContext context) {
     if (!_loaded) return Container();
 
-    int smileysNum = _groups[Category.SMILEYS].pages.length;
-    int animalsNum = _groups[Category.ANIMALS].pages.length;
-    int foodsNum = _groups[Category.FOODS].pages.length;
-    int activitiesNum = _groups[Category.ACTIVITIES].pages.length;
-    int travelNum = _groups[Category.TRAVEL].pages.length;
-    int objectsNum = _groups[Category.OBJECTS].pages.length;
-    int symbolsNum = _groups[Category.SYMBOLS].pages.length;
-    int flagsNum = _groups[Category.FLAGS].pages.length;
+    int smileysNum = _groups[Category.SMILEYS]!.pages.length;
+    int animalsNum = _groups[Category.ANIMALS]!.pages.length;
+    int foodsNum = _groups[Category.FOODS]!.pages.length;
+    int activitiesNum = _groups[Category.ACTIVITIES]!.pages.length;
+    int travelNum = _groups[Category.TRAVEL]!.pages.length;
+    int objectsNum = _groups[Category.OBJECTS]!.pages.length;
+    int symbolsNum = _groups[Category.SYMBOLS]!.pages.length;
+    int flagsNum = _groups[Category.FLAGS]!.pages.length;
 
     PageController pageController;
     switch (selectedCategory) {
@@ -168,10 +168,10 @@ class _EmojiChooserState extends State<EmojiChooser> {
 
     List<Widget> pages = [];
     List<Widget> selectors = [];
-    Group selectedGroup = _groups[selectedCategory];
+    Group selectedGroup = _groups[selectedCategory]!;
     int index = 0;
     for (Category category in _groups.keys) {
-      Group group = _groups[category];
+      Group group = _groups[category]!;
       pages.addAll(group.pages.map((e) => EmojiPage(
             rows: widget.rows,
             columns: widget.columns,
@@ -179,16 +179,14 @@ class _EmojiChooserState extends State<EmojiChooser> {
             emojis: e,
             onSelected: (internalData) {
               EmojiData emoji = EmojiData(
-                internalData.id,
-                internalData.name,
-                internalData.unifiedForSkin(_skin),
-                internalData.charForSkin(_skin),
-                internalData.category,
-                _skin,
+                id: internalData.id,
+                name: internalData.name,
+                unified: internalData.unifiedForSkin(_skin),
+                char: internalData.charForSkin(_skin),
+                category: internalData.category,
+                skin: _skin,
               );
-              if (widget.onSelected != null) {
-                widget.onSelected(emoji);
-              }
+              widget.onSelected(emoji);
             },
           )));
       int current = index;
@@ -221,7 +219,7 @@ class _EmojiChooserState extends State<EmojiChooser> {
               Text(
                 selectedGroup.title.toUpperCase(),
                 style: TextStyle(
-                  color: Theme.of(context).primaryTextTheme.caption.color,
+                  color: Theme.of(context).primaryTextTheme.caption!.color,
                   fontSize: 12,
                 ),
               ),
@@ -311,13 +309,13 @@ class _EmojiChooserState extends State<EmojiChooser> {
     }
     // Per Category, create pages
     for (Category category in order) {
-      Group group = _groups[category];
+      Group group = _groups[category]!;
       List<EmojiInternalData> categoryEmojis = [];
       for (String name in group.names) {
         List<EmojiInternalData> subName = _emojis
-            .where((element) => element.category == name && element.hasApple)
+            .where((element) => element.category == name && element.hasApple!)
             .toList();
-        subName.sort((lhs, rhs) => lhs.sortOrder.compareTo(rhs.sortOrder));
+        subName.sort((lhs, rhs) => lhs.sortOrder!.compareTo(rhs.sortOrder!));
         categoryEmojis.addAll(subName);
       }
 

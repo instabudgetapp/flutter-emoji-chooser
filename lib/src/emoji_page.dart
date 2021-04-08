@@ -9,12 +9,12 @@ class EmojiPage extends StatelessWidget {
   final Function(EmojiInternalData) onSelected;
 
   const EmojiPage(
-      {Key key,
-      @required this.rows,
-      @required this.columns,
-      @required this.skin,
-      @required this.emojis,
-      @required this.onSelected})
+      {Key? key,
+      required this.rows,
+      required this.columns,
+      required this.skin,
+      required this.emojis,
+      required this.onSelected})
       : super(key: key);
 
   @override
@@ -26,8 +26,10 @@ class EmojiPage extends StatelessWidget {
             if (index >= emojis.length) return Container();
             var emoji = emojis[index];
             return Center(
-              child: FlatButton(
-                padding: EdgeInsets.all(0.0),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(0.0),
+                ),
                 child: Center(
                   child: Text(
                     emoji.charForSkin(skin),

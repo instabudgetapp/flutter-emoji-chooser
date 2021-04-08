@@ -6,8 +6,8 @@ class SkinToneSelector extends StatefulWidget {
   final Function(int) onSkinChanged;
 
   const SkinToneSelector({
-    Key key,
-    @required this.onSkinChanged,
+    Key? key,
+    required this.onSkinChanged,
   }) : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class SkinToneSelector extends StatefulWidget {
 
 class _SkinToneState extends State<SkinToneSelector> {
   int _skin = 0;
-  OverlayEntry _overlayEntry;
+  late OverlayEntry _overlayEntry;
   bool _expanded = false;
 
   @override
@@ -28,7 +28,7 @@ class _SkinToneState extends State<SkinToneSelector> {
           _overlayEntry.remove();
         } else {
           _overlayEntry = createOverlay(context);
-          Overlay.of(context).insert(_overlayEntry);
+          Overlay.of(context)!.insert(_overlayEntry);
         }
         setState(() {
           _expanded = !_expanded;
@@ -38,7 +38,7 @@ class _SkinToneState extends State<SkinToneSelector> {
   }
 
   OverlayEntry createOverlay(BuildContext context) {
-    RenderBox renderBox = context.findRenderObject();
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
     var size = renderBox.size;
     var offset = renderBox.localToGlobal(Offset.zero);
 
@@ -77,18 +77,20 @@ class _SkinToneState extends State<SkinToneSelector> {
 }
 
 class SkinDotButton extends StatelessWidget {
-  final int skin;
-  final Function() onPressed;
+  final int? skin;
+  final Function()? onPressed;
 
-  const SkinDotButton({Key key, this.skin, this.onPressed}) : super(key: key);
+  const SkinDotButton({Key? key, this.skin, this.onPressed}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 9,
       height: MediaQuery.of(context).size.width / 9,
-      child: FlatButton(
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(0.0),
+        ),
         autofocus: true,
-        padding: EdgeInsets.all(0.0),
         child: SkinDot(
           skin: skin,
         ),

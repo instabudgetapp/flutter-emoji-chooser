@@ -7,10 +7,10 @@ class CategorySelector extends StatelessWidget {
   final Function() onSelected;
 
   const CategorySelector(
-      {Key key,
-      @required this.selected,
-      @required this.icon,
-      @required this.onSelected})
+      {Key? key,
+      required this.selected,
+      required this.icon,
+      required this.onSelected})
       : super(key: key);
 
   @override
@@ -18,13 +18,15 @@ class CategorySelector extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 9,
       height: MediaQuery.of(context).size.width / 9,
-      child: FlatButton(
-        padding: EdgeInsets.all(0.0),
-        color: selected ? Colors.black12 : Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(100),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(0.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(100),
+            ),
           ),
+          backgroundColor: selected ? Colors.black12 : Colors.transparent,
         ),
         child: Center(
           child: Icon(

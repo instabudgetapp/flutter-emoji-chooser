@@ -11,7 +11,7 @@ Brought to you by the [InstaBudget](https://instabudget.app) team.
 Declare dependency in your `pubspec.yaml`
 ```yaml
 dependencies:
-    emoji_chooser: ^0.9.2
+    emoji_chooser: ^0.9.3
 ```
 
 You can then easily embed the Emoji Chooser Widget anywhere in your application:
